@@ -1054,19 +1054,19 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
           className="absolute inset-0 z-20 pointer-events-none"
         >
           <motion.h2
-            key={activeItem.title} // Re-lanza la animación cuando cambia el título
+            key={activeItem.title}
             initial="hidden"
             animate={isMoving ? "hidden" : "visible"}
             variants={{
               visible: {
                 transition: {
-                  staggerChildren: 0.05,
-                  delayChildren: 0.2
+                  staggerChildren: 0.03, // Más rápido entre letras
+                  delayChildren: 0.1 // Menos espera inicial
                 }
               },
               hidden: {
                 transition: {
-                  staggerChildren: 0.02,
+                  staggerChildren: 0.01,
                   staggerDirection: -1
                 }
               }
@@ -1091,12 +1091,14 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
                 variants={{
                   visible: { 
                     opacity: 1, 
-                    y: 0,
-                    transition: { type: "spring", stiffness: 100, damping: 10 }
+                    x: 0,
+                    filter: 'blur(0px)',
+                    transition: { type: "spring", stiffness: 200, damping: 25 }
                   },
                   hidden: { 
                     opacity: 0, 
-                    y: 20 
+                    x: 30, // Desplazamiento lateral para un barrido más dinámico
+                    filter: 'blur(15px)' // Desenfoque inicial fuerte
                   }
                 }}
                 className="inline-block"
