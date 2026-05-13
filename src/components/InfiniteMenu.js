@@ -990,10 +990,9 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
   };
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
   useEffect(() => {
     const handleMouseMove = (e) => {
-      // Aumentamos la sensibilidad (máximo 100px de desplazamiento para un efecto más fuerte)
+      // Movimiento de fondo
       const x = (e.clientX / window.innerWidth - 0.5) * 100;
       const y = (e.clientY / window.innerHeight - 0.5) * 100;
       setMousePos({ x, y });
@@ -1004,24 +1003,9 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
   }, []);
 
   return (
-    <div className="relative w-full h-full bg-black">
-      {/* Base Parallax Background (Visible when moving or as a fallback) */}
-      <motion.div 
-        className="absolute inset-[-100px] z-0 bg-cover bg-center"
-        animate={{ 
-          x: -mousePos.x, 
-          y: -mousePos.y,
-          opacity: isMoving ? 1 : 0.3 // Se atenúa cuando hay un planeta seleccionado
-        }}
-        transition={{ 
-          x: { type: "spring", stiffness: 60, damping: 25 },
-          y: { type: "spring", stiffness: 60, damping: 25 },
-          opacity: { duration: 0.5 }
-        }}
-        style={{ 
-          backgroundImage: `url(/background.webp)`,
-        }}
-      />
+    <div className="relative w-full h-full bg-black overflow-hidden">
+      {/* Solid Black Base */}
+      <div className="absolute inset-0 z-0 bg-black" />
 
       {/* Dynamic Active Planet Background (Visible when NOT moving) */}
       <AnimatePresence>
