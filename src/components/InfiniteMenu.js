@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { mat4, quat, vec2, vec3 } from 'gl-matrix';
 
 const discVertShaderSource = `#version 300 es
@@ -632,7 +633,7 @@ class InfiniteGridMenu {
   }
 
   #init(onInit) {
-    this.gl = this.canvas.getContext('webgl2', { antialias: true, alpha: false });
+    this.gl = this.canvas.getContext('webgl2', { antialias: true, alpha: true });
     const gl = this.gl;
     if (!gl) {
       throw new Error('No WebGL 2 context!');
@@ -960,60 +961,106 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full bg-black overflow-hidden">
+      {/* Dynamic Blurred Background */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence>
+          {activeItem && (
+            <motion.div
+              key={activeItem.image}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ 
+                backgroundImage: `url(${activeItem.image})`,
+                filter: 'blur(40px) brightness(0.5)',
+                transform: 'scale(1.1)' 
+              }}
+            />
+          )}
+        </AnimatePresence>
+      </div>
+
       <canvas
         id="infinite-grid-menu-canvas"
         ref={canvasRef}
-        className="cursor-grab w-full h-full overflow-hidden relative outline-none active:cursor-grabbing"
+        className="cursor-grab w-full h-full overflow-hidden relative z-10 outline-none active:cursor-grabbing"
       />
 
       {activeItem && (
-        <div className="absolute inset-0 pointer-events-none flex flex-col justify-center items-start px-[10%]">
-          <div className={`
-            transition-all duration-700 ease-out
-            ${isMoving ? 'opacity-0 translate-y-10 blur-lg' : 'opacity-100 translate-y-0 blur-0'}
-          `}>
-            <h2 className="text-white font-black text-[clamp(3rem,10vw,8rem)] leading-none tracking-tighter uppercase select-none">
-              {activeItem.title}
-            </h2>
-            
-            <div className="flex items-center gap-6 mt-4">
-              <span className="w-20 h-[1px] bg-rose-600"></span>
-              <p className="text-white/60 text-xl max-w-sm font-light italic tracking-wide select-none">
-                {activeItem.description}
-              </p>
-            </div>
-          </div>
+        <>
+          <h2
+            className={`
+          select-none
+          absolute
+          font-black
+          [font-size:4rem]
+          left-[1.6em]
+          top-1/2
+          transform
+          translate-x-[20%]
+          -translate-y-1/2
+          transition-all
+          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+          ${
+            isMoving
+              ? 'opacity-0 pointer-events-none duration-[100ms]'
+              : 'opacity-100 pointer-events-auto duration-[500ms]'
+          }
+        `}
+          >
+            {activeItem.title}
+          </h2>
+
+          <p
+            className={`
+          select-none
+          absolute
+          max-w-[10ch]
+          text-[1.5rem]
+          top-1/2
+          right-[1%]
+          transition-all
+          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+          ${
+            isMoving
+              ? 'opacity-0 pointer-events-none duration-[100ms] translate-x-[-60%] -translate-y-1/2'
+              : 'opacity-100 pointer-events-auto duration-[500ms] translate-x-[-90%] -translate-y-1/2'
+          }
+        `}
+          >
+            {activeItem.description}
+          </p>
 
           <div
             onClick={handleButtonClick}
             className={`
-              absolute
-              bottom-12
-              left-1/2
-              -translate-x-1/2
-              z-20
-              w-16
-              h-16
-              flex
-              items-center
-              justify-center
-              bg-white
-              text-black
-              rounded-full
-              cursor-pointer
-              pointer-events-auto
-              transition-all
-              duration-500
-              hover:scale-110
-              hover:bg-rose-600
-              hover:text-white
-              ${isMoving ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}
-            `}
+          absolute
+          left-1/2
+          z-10
+          w-[60px]
+          h-[60px]
+          grid
+          place-items-center
+          bg-[#00ffff]
+          border-[5px]
+          border-black
+          rounded-full
+          cursor-pointer
+          transition-all
+          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+          ${
+            isMoving
+              ? 'bottom-[-80px] opacity-0 pointer-events-none duration-[100ms] scale-0 -translate-x-1/2'
+              : 'bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
+          }
+        `}
           >
-            <span className="text-2xl font-bold">↗</span>
+            <p className="select-none relative text-[#120F17] top-[2px] text-[26px]">&#x2197;</p>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
