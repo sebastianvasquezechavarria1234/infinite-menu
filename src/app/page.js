@@ -4,46 +4,52 @@ import InfiniteMenu from '@/components/InfiniteMenu';
 
 const items = [
   {
-    image: '/universe/nebula.jpg',
+    image: '/abstract/chrome.jpg',
     link: '#',
-    title: 'NEBULA',
-    description: 'A vast cloud of gas and dust, the birthplace of new stars.'
+    title: 'CHROME FLOW',
+    description: 'A liquid metal surface reflecting a digital world of pure reflection.'
   },
   {
-    image: '/universe/galaxy.jpg',
+    image: '/abstract/neon.jpg',
     link: '#',
-    title: 'GALAXY',
-    description: 'A massive, gravitationally bound system of stars and dark matter.'
+    title: 'NEON VORTEX',
+    description: 'Electric pulses of light dancing through a dark, high-contrast void.'
   },
   {
-    image: '/universe/stars.jpg',
+    image: '/abstract/wave.jpg',
     link: '#',
-    title: 'STARS',
-    description: 'Luminous spheres of plasma held together by their own gravity.'
+    title: 'CRYSTAL WAVE',
+    description: 'The smooth, rhythmic motion of transparent glass in a sunset glow.'
   },
   {
-    image: '/universe/andromeda.jpg',
+    image: '/abstract/pearl.jpg',
     link: '#',
-    title: 'ANDROMEDA',
-    description: 'Our nearest major galactic neighbor, a stunning spiral galaxy.'
+    title: 'PEARL ESSENCE',
+    description: 'Soft, iridescent gradients that shimmer with every movement.'
   },
   {
-    image: '/universe/cosmos.jpg',
+    image: '/abstract/gold.jpg',
     link: '#',
-    title: 'COSMOS',
-    description: 'The universe seen as a well-ordered and harmonious system.'
+    title: 'LIQUID GOLD',
+    description: 'The ultimate symbol of luxury, flowing with warmth and elegance.'
   },
   {
-    image: '/universe/deep-space.jpg',
+    image: '/abstract/spectrum.jpg',
     link: '#',
-    title: 'DEEP SPACE',
-    description: 'The vast, mysterious regions beyond our own solar system.'
+    title: 'SPECTRUM DRIFT',
+    description: 'A full range of colors merging in a seamless, fluid transition.'
   },
   {
-    image: '/universe/blackhole.jpg',
+    image: '/abstract/prism.jpg',
     link: '#',
-    title: 'BLACK HOLE',
-    description: 'A region of spacetime where gravity is so strong that nothing can escape.'
+    title: 'PRISM SHAPE',
+    description: 'Geometric light refraction creating sharp, vibrant color spikes.'
+  },
+  {
+    image: '/abstract/iris.jpg',
+    link: '#',
+    title: 'IRIS BURST',
+    description: 'A concentric explosion of color inspired by the beauty of the eye.'
   }
 ];
 

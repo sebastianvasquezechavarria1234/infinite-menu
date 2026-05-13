@@ -1053,30 +1053,59 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
           transition={{ type: "spring", stiffness: 60, damping: 25 }}
           className="absolute inset-0 z-20 pointer-events-none"
         >
-          <h2
+          <motion.h2
+            key={activeItem.title} // Re-lanza la animación cuando cambia el título
+            initial="hidden"
+            animate={isMoving ? "hidden" : "visible"}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.05,
+                  delayChildren: 0.2
+                }
+              },
+              hidden: {
+                transition: {
+                  staggerChildren: 0.02,
+                  staggerDirection: -1
+                }
+              }
+            }}
             className={`
-          google-sans-flex-custom
-          select-none
-          absolute
-          font-black
-          text-white
-          [font-size:4rem]
-          left-[1.6em]
-          top-1/2
-          transform
-          translate-x-[20%]
-          -translate-y-1/2
-          transition-all
-          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? 'opacity-0 pointer-events-none duration-[100ms]'
-              : 'opacity-100 pointer-events-auto duration-[500ms]'
-          }
-        `}
+              google-sans-flex-custom
+              select-none
+              absolute
+              font-black
+              text-white
+              [font-size:4rem]
+              left-[1.6em]
+              top-1/2
+              transform
+              -translate-y-1/2
+              pointer-events-none
+            `}
           >
-            {activeItem.title}
-          </h2>
+            {activeItem.title.split('').map((char, index) => (
+              <motion.span
+                key={index}
+                variants={{
+                  visible: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { type: "spring", stiffness: 100, damping: 10 }
+                  },
+                  hidden: { 
+                    opacity: 0, 
+                    y: 20 
+                  }
+                }}
+                className="inline-block"
+                style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.h2>
 
           <div
             className={`
