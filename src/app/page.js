@@ -4,52 +4,46 @@ import InfiniteMenu from '@/components/InfiniteMenu';
 
 const items = [
   {
-    image: '/planets/mercury.jpg',
+    image: '/universe/nebula.jpg',
     link: '#',
-    title: 'MERCURY',
-    description: 'The smallest planet and the closest to the Sun.'
+    title: 'NEBULA',
+    description: 'A vast cloud of gas and dust, the birthplace of new stars.'
   },
   {
-    image: '/planets/venus.jpg',
+    image: '/universe/galaxy.jpg',
     link: '#',
-    title: 'VENUS',
-    description: 'A thick, toxic atmosphere traps heat in a runaway greenhouse effect.'
+    title: 'GALAXY',
+    description: 'A massive, gravitationally bound system of stars and dark matter.'
   },
   {
-    image: '/planets/earth.jpg',
+    image: '/universe/stars.jpg',
     link: '#',
-    title: 'EARTH',
-    description: 'Our fragile blue marble, the only known home for life.'
+    title: 'STARS',
+    description: 'Luminous spheres of plasma held together by their own gravity.'
   },
   {
-    image: '/planets/mars.jpg',
+    image: '/universe/andromeda.jpg',
     link: '#',
-    title: 'MARS',
-    description: 'The red planet, a dusty, cold, desert world.'
+    title: 'ANDROMEDA',
+    description: 'Our nearest major galactic neighbor, a stunning spiral galaxy.'
   },
   {
-    image: '/planets/jupiter.jpg',
+    image: '/universe/cosmos.jpg',
     link: '#',
-    title: 'JUPITER',
-    description: 'The largest planet in our solar system, a massive gas giant.'
+    title: 'COSMOS',
+    description: 'The universe seen as a well-ordered and harmonious system.'
   },
   {
-    image: '/planets/saturn.jpg',
+    image: '/universe/deep-space.jpg',
     link: '#',
-    title: 'SATURN',
-    description: 'Adorned with a dazzling, complex system of icy rings.'
+    title: 'DEEP SPACE',
+    description: 'The vast, mysterious regions beyond our own solar system.'
   },
   {
-    image: '/planets/uranus.jpg',
+    image: '/universe/blackhole.jpg',
     link: '#',
-    title: 'URANUS',
-    description: 'An ice giant with a unique tilt, rotating nearly on its side.'
-  },
-  {
-    image: '/planets/neptune.jpg',
-    link: '#',
-    title: 'NEPTUNE',
-    description: 'The most distant major planet, dark, cold and whipped by winds.'
+    title: 'BLACK HOLE',
+    description: 'A region of spacetime where gravity is so strong that nothing can escape.'
   }
 ];
 
