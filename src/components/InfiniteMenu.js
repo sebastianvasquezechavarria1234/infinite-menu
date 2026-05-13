@@ -993,9 +993,9 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      // Calculamos el movimiento (máximo 30px de desplazamiento para un efecto sutil)
-      const x = (e.clientX / window.innerWidth - 0.5) * 40;
-      const y = (e.clientY / window.innerHeight - 0.5) * 40;
+      // Aumentamos la sensibilidad (máximo 100px de desplazamiento para un efecto más fuerte)
+      const x = (e.clientX / window.innerWidth - 0.5) * 100;
+      const y = (e.clientY / window.innerHeight - 0.5) * 100;
       setMousePos({ x, y });
     };
 
@@ -1007,18 +1007,24 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
     <div className="relative w-full h-full bg-black">
       {/* Parallax Background */}
       <motion.div 
-        className="absolute inset-[-40px] z-0 bg-cover bg-center"
+        className="absolute inset-[-100px] z-0 bg-cover bg-center"
         animate={{ 
           x: -mousePos.x, 
           y: -mousePos.y 
         }}
-        transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        transition={{ type: "spring", stiffness: 60, damping: 25 }}
         style={{ 
           backgroundImage: `url(/background.webp)`,
         }}
       />
-      {/* Overlay to ensure readability if needed */}
-      <div className="absolute inset-0 z-0 bg-black/20 pointer-events-none" />
+      
+      {/* Cinematic Vignette Overlay (Darker Center) */}
+      <div 
+        className="absolute inset-0 z-0 pointer-events-none" 
+        style={{
+          background: 'radial-gradient(circle, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.9) 100%)'
+        }}
+      />
 
       <canvas
         id="infinite-grid-menu-canvas"
