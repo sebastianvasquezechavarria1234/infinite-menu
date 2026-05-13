@@ -973,7 +973,7 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
             transition-all duration-700 ease-out
             ${isMoving ? 'opacity-0 translate-y-10 blur-lg' : 'opacity-100 translate-y-0 blur-0'}
           `}>
-            <h2 className="text-white font-light text-[clamp(3rem,10vw,8rem)] leading-none tracking-tight uppercase select-none">
+            <h2 className="text-white font-black text-[clamp(3rem,10vw,8rem)] leading-none tracking-tighter uppercase select-none">
               {activeItem.title}
             </h2>
             
