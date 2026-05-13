@@ -1005,24 +1005,47 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
 
   return (
     <div className="relative w-full h-full bg-black">
-      {/* Parallax Background */}
+      {/* Base Parallax Background (Visible when moving or as a fallback) */}
       <motion.div 
         className="absolute inset-[-100px] z-0 bg-cover bg-center"
         animate={{ 
           x: -mousePos.x, 
-          y: -mousePos.y 
+          y: -mousePos.y,
+          opacity: isMoving ? 1 : 0.3 // Se atenúa cuando hay un planeta seleccionado
         }}
-        transition={{ type: "spring", stiffness: 60, damping: 25 }}
+        transition={{ 
+          x: { type: "spring", stiffness: 60, damping: 25 },
+          y: { type: "spring", stiffness: 60, damping: 25 },
+          opacity: { duration: 0.5 }
+        }}
         style={{ 
           backgroundImage: `url(/background.webp)`,
         }}
       />
+
+      {/* Dynamic Active Planet Background (Visible when NOT moving) */}
+      <AnimatePresence>
+        {!isMoving && activeItem && (
+          <motion.div
+            key={activeItem.image}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 0.7, scale: 1.05 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="absolute inset-0 z-0 bg-cover bg-center"
+            style={{ 
+              backgroundImage: `url(${activeItem.image})`,
+              filter: 'blur(20px) brightness(0.6)' // Un poco de blur para mantener profundidad
+            }}
+          />
+        )}
+      </AnimatePresence>
       
-      {/* Cinematic Vignette Overlay (Darker Center) */}
+      {/* Cinematic Vignette Overlay */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none" 
         style={{
-          background: 'radial-gradient(circle, rgba(0,0,0,0.4) 10%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.9) 100%)'
+          background: 'radial-gradient(circle, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.9) 100%)'
         }}
       />
 
