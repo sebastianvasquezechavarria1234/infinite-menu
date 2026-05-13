@@ -990,9 +990,18 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
   };
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [randomBg, setRandomBg] = useState(null);
+
+  useEffect(() => {
+    // Elegir una imagen aleatoria del array de items al montar
+    if (items && items.length > 0) {
+      const random = items[Math.floor(Math.random() * items.length)];
+      setRandomBg(random.image);
+    }
+  }, []);
+
   useEffect(() => {
     const handleMouseMove = (e) => {
-      // Movimiento de fondo
       const x = (e.clientX / window.innerWidth - 0.5) * 100;
       const y = (e.clientY / window.innerHeight - 0.5) * 100;
       setMousePos({ x, y });
@@ -1004,8 +1013,21 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
 
   return (
     <div className="relative w-full h-full bg-black overflow-hidden">
-      {/* Solid Black Base */}
-      <div className="absolute inset-0 z-0 bg-black" />
+      {/* Random Background (Always visible as default) */}
+      {randomBg && (
+        <motion.div
+          animate={{ x: -mousePos.x * 0.6, y: -mousePos.y * 0.6 }}
+          transition={{ type: 'spring', stiffness: 60, damping: 25 }}
+          className="absolute inset-[-100px] z-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${randomBg})`,
+            filter: 'blur(25px) brightness(0.45)'
+          }}
+        />
+      )}
+
+      {/* Solid Black Base (behind everything) */}
+      <div className="absolute inset-0 bg-black" style={{ zIndex: -1 }} />
 
       {/* Dynamic Active Planet Background (Visible when NOT moving) */}
       <AnimatePresence>
