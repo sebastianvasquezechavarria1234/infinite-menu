@@ -16,8 +16,8 @@ export default function Home() {
 
       <main className={styles.main}>
         <section className={styles.hero}>
-          <h1 className={styles.title}>
-            Design <br /> <span>Refined.</span>
+          <h1 className={`${styles.title} px-4 py-2`}>
+            Design <br /> <span className="text-rose-600">Refined.</span>
           </h1>
         </section>
         
