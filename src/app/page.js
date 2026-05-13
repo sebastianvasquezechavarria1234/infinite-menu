@@ -6,49 +6,49 @@ const items = [
   {
     image: '/abstract/chrome.jpg',
     link: '#',
-    title: 'CHROME FLOW',
+    title: 'Chrome Flow',
     description: 'A liquid metal surface reflecting a digital world of pure reflection.'
   },
   {
     image: '/abstract/neon.jpg',
     link: '#',
-    title: 'NEON VORTEX',
+    title: 'Neon Vortex',
     description: 'Electric pulses of light dancing through a dark, high-contrast void.'
   },
   {
     image: '/abstract/wave.jpg',
     link: '#',
-    title: 'CRYSTAL WAVE',
+    title: 'Crystal Wave',
     description: 'The smooth, rhythmic motion of transparent glass in a sunset glow.'
   },
   {
     image: '/abstract/pearl.jpg',
     link: '#',
-    title: 'PEARL ESSENCE',
+    title: 'Pearl Essence',
     description: 'Soft, iridescent gradients that shimmer with every movement.'
   },
   {
     image: '/abstract/gold.jpg',
     link: '#',
-    title: 'LIQUID GOLD',
+    title: 'Liquid Gold',
     description: 'The ultimate symbol of luxury, flowing with warmth and elegance.'
   },
   {
     image: '/abstract/spectrum.jpg',
     link: '#',
-    title: 'SPECTRUM DRIFT',
+    title: 'Spectrum Drift',
     description: 'A full range of colors merging in a seamless, fluid transition.'
   },
   {
     image: '/abstract/prism.jpg',
     link: '#',
-    title: 'PRISM SHAPE',
+    title: 'Prism Shape',
     description: 'Geometric light refraction creating sharp, vibrant color spikes.'
   },
   {
     image: '/abstract/iris.jpg',
     link: '#',
-    title: 'IRIS BURST',
+    title: 'Iris Burst',
     description: 'A concentric explosion of color inspired by the beauty of the eye.'
   }
 ];
