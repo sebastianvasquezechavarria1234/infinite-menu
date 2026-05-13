@@ -989,26 +989,36 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
     }
   };
 
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      // Calculamos el movimiento (máximo 30px de desplazamiento para un efecto sutil)
+      const x = (e.clientX / window.innerWidth - 0.5) * 40;
+      const y = (e.clientY / window.innerHeight - 0.5) * 40;
+      setMousePos({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <div className="relative w-full h-full bg-black overflow-hidden">
-      {/* Dynamic Blurred Background */}
-      <div className="absolute inset-0 z-0">
-        <AnimatePresence>
-          {activeItem && (
-            <motion.div
-              key={activeItem.image}
-              initial={{ opacity: 0, scale: 1.2, filter: 'blur(60px) brightness(0.5)' }}
-              animate={{ opacity: 0.6, scale: 1.1, filter: 'blur(40px) brightness(0.5)' }}
-              exit={{ opacity: 0, scale: 1.0, filter: 'blur(60px) brightness(0.5)' }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ 
-                backgroundImage: `url(${activeItem.image})`,
-              }}
-            />
-          )}
-        </AnimatePresence>
-      </div>
+    <div className="relative w-full h-full bg-black">
+      {/* Parallax Background */}
+      <motion.div 
+        className="absolute inset-[-40px] z-0 bg-cover bg-center"
+        animate={{ 
+          x: -mousePos.x, 
+          y: -mousePos.y 
+        }}
+        transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        style={{ 
+          backgroundImage: `url(/background.webp)`,
+        }}
+      />
+      {/* Overlay to ensure readability if needed */}
+      <div className="absolute inset-0 z-0 bg-black/20 pointer-events-none" />
 
       <canvas
         id="infinite-grid-menu-canvas"
