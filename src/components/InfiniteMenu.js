@@ -1075,6 +1075,7 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
           select-none
           absolute
           font-black
+          text-white
           [font-size:4rem]
           left-[1.6em]
           top-1/2
