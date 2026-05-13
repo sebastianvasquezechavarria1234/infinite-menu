@@ -1049,14 +1049,26 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
         }}
       />
 
-      <canvas
+      <motion.canvas
         id="infinite-grid-menu-canvas"
         ref={canvasRef}
+        animate={{ 
+          x: -mousePos.x * 0.4, // Menos sensibilidad que el fondo para efecto de profundidad
+          y: -mousePos.y * 0.4 
+        }}
+        transition={{ type: "spring", stiffness: 60, damping: 25 }}
         className="cursor-grab w-full h-full overflow-hidden relative z-10 outline-none active:cursor-grabbing"
       />
 
       {activeItem && (
-        <>
+        <motion.div
+          animate={{ 
+            x: -mousePos.x * 0.6, // El texto se mueve un poco más que la esfera
+            y: -mousePos.y * 0.6 
+          }}
+          transition={{ type: "spring", stiffness: 60, damping: 25 }}
+          className="absolute inset-0 z-20 pointer-events-none"
+        >
           <h2
             className={`
           google-sans-flex-custom
@@ -1105,13 +1117,21 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
               </p>
             </div>
           </div>
+        </motion.div>
+      )}
 
-          <div
-            onClick={handleButtonClick}
-            className={`
+      {activeItem && (
+        <motion.div
+          onClick={handleButtonClick}
+          animate={{ 
+            x: -mousePos.x * 0.5,
+            y: -mousePos.y * 0.5 
+          }}
+          transition={{ type: "spring", stiffness: 60, damping: 25 }}
+          className={`
           absolute
           left-1/2
-          z-20
+          z-30
           w-[60px]
           h-[60px]
           grid
@@ -1127,10 +1147,9 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
               : 'bottom-[3.8em] opacity-100 pointer-events-auto duration-[500ms] scale-100 -translate-x-1/2'
           }
         `}
-          >
-            <p className="select-none relative text-black top-[2px] text-[26px]">&#x2197;</p>
-          </div>
-        </>
+        >
+          <p className="select-none relative text-black top-[2px] text-[26px]">&#x2197;</p>
+        </motion.div>
       )}
     </div>
   );
