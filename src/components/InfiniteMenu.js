@@ -714,6 +714,13 @@ class InfiniteGridMenu {
             const img = new Image();
             img.crossOrigin = 'anonymous';
             img.onload = () => resolve(img);
+            img.onerror = () => {
+              console.error(`Failed to load image: ${item.image}`);
+              // Fallback to a tiny transparent pixel if load fails
+              const fallback = new Image();
+              fallback.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+              resolve(fallback);
+            };
             img.src = item.image;
           })
       )
@@ -721,7 +728,29 @@ class InfiniteGridMenu {
       images.forEach((img, i) => {
         const x = (i % this.atlasSize) * cellSize;
         const y = Math.floor(i / this.atlasSize) * cellSize;
-        ctx.drawImage(img, x, y, cellSize, cellSize);
+        
+        // Draw image with "cover" logic to prevent stretching
+        const imgAspect = img.width / img.height;
+        let drawWidth, drawHeight, offsetX, offsetY;
+        
+        if (imgAspect > 1) {
+          drawHeight = cellSize;
+          drawWidth = cellSize * imgAspect;
+          offsetX = (cellSize - drawWidth) / 2;
+          offsetY = 0;
+        } else {
+          drawWidth = cellSize;
+          drawHeight = cellSize / imgAspect;
+          offsetX = 0;
+          offsetY = (cellSize - drawHeight) / 2;
+        }
+        
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(x, y, cellSize, cellSize);
+        ctx.clip();
+        ctx.drawImage(img, x + offsetX, y + offsetY, drawWidth, drawHeight);
+        ctx.restore();
       });
 
       gl.bindTexture(gl.TEXTURE_2D, this.tex);
@@ -991,6 +1020,7 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
         <>
           <h2
             className={`
+          google-sans-flex-custom
           select-none
           absolute
           font-black
@@ -1012,39 +1042,42 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
             {activeItem.title}
           </h2>
 
-          <p
+          <div
             className={`
+          google-sans-flex-custom
           select-none
           absolute
-          max-w-[10ch]
-          text-[1.5rem]
+          max-w-md
           top-1/2
-          right-[1%]
+          right-[5%]
           transition-all
           ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
           ${
             isMoving
-              ? 'opacity-0 pointer-events-none duration-[100ms] translate-x-[-60%] -translate-y-1/2'
-              : 'opacity-100 pointer-events-auto duration-[500ms] translate-x-[-90%] -translate-y-1/2'
+              ? 'opacity-0 pointer-events-none duration-[100ms] translate-x-[-20%] -translate-y-1/2'
+              : 'opacity-100 pointer-events-auto duration-[500ms] translate-x-0 -translate-y-1/2'
           }
         `}
           >
-            {activeItem.description}
-          </p>
+            <div className="flex items-center gap-6">
+              <span className="w-12 h-[1px] bg-white/50"></span>
+              <p className="google-sans-flex-custom text-white text-xl font-light italic tracking-wide select-none">
+                {activeItem.description}
+              </p>
+            </div>
+          </div>
 
           <div
             onClick={handleButtonClick}
             className={`
           absolute
           left-1/2
-          z-10
+          z-20
           w-[60px]
           h-[60px]
           grid
           place-items-center
-          bg-[#00ffff]
-          border-[5px]
-          border-black
+          bg-white
           rounded-full
           cursor-pointer
           transition-all
@@ -1056,7 +1089,7 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
           }
         `}
           >
-            <p className="select-none relative text-[#120F17] top-[2px] text-[26px]">&#x2197;</p>
+            <p className="select-none relative text-black top-[2px] text-[26px]">&#x2197;</p>
           </div>
         </>
       )}
