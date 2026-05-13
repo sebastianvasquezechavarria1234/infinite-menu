@@ -1110,30 +1110,78 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
             ))}
           </motion.h2>
 
-          <div
+          <motion.div
+            key={activeItem.description}
+            initial="hidden"
+            animate={isMoving ? "hidden" : "visible"}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.015, // Un poco más rápido por ser más texto
+                  delayChildren: 0.3
+                }
+              },
+              hidden: {
+                transition: {
+                  staggerChildren: 0.005,
+                  staggerDirection: -1
+                }
+              }
+            }}
             className={`
-          google-sans-flex-custom
-          select-none
-          absolute
-          max-w-md
-          top-1/2
-          right-[5%]
-          transition-all
-          ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          ${
-            isMoving
-              ? 'opacity-0 pointer-events-none duration-[100ms] translate-x-[-20%] -translate-y-1/2'
-              : 'opacity-100 pointer-events-auto duration-[500ms] translate-x-0 -translate-y-1/2'
-          }
-        `}
+              google-sans-flex-custom
+              select-none
+              absolute
+              max-w-md
+              top-1/2
+              right-[5%]
+              transform
+              -translate-y-1/2
+              pointer-events-none
+            `}
           >
             <div className="flex items-center gap-6">
-              <span className="w-12 h-[1px] bg-white/50"></span>
-              <p className="google-sans-flex-custom text-white text-xl font-thin italic tracking-wide select-none">
-                {activeItem.description}
+              <motion.span 
+                variants={{
+                  visible: { 
+                    width: 48, 
+                    opacity: 0.5,
+                    transition: { duration: 0.8, ease: "circOut" }
+                  },
+                  hidden: { 
+                    width: 0, 
+                    opacity: 0,
+                    transition: { duration: 0.3, ease: "circIn" }
+                  }
+                }}
+                className="h-[1px] bg-white shrink-0 block"
+              ></motion.span>
+              <p className="google-sans-flex-custom text-white text-xl font-thin italic tracking-wide select-none flex flex-wrap">
+                {activeItem.description.split('').map((char, index) => (
+                  <motion.span
+                    key={index}
+                    variants={{
+                      visible: { 
+                        opacity: 1, 
+                        x: 0,
+                        filter: 'blur(0px)',
+                        transition: { type: "spring", stiffness: 200, damping: 25 }
+                      },
+                      hidden: { 
+                        opacity: 0, 
+                        x: 20,
+                        filter: 'blur(10px)'
+                      }
+                    }}
+                    className="inline-block"
+                    style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
               </p>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
 
