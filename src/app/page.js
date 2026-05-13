@@ -1,41 +1,40 @@
-import InfiniteMenu from "@/components/InfiniteMenu";
-import styles from "./page.module.css";
+'use client';
+
+import InfiniteMenu from '@/components/InfiniteMenu';
+
+const items = [
+  {
+    image: 'https://picsum.photos/300/300?grayscale',
+    link: 'https://google.com/',
+    title: 'Item 1',
+    description: 'This is pretty cool, right?'
+  },
+  {
+    image: 'https://picsum.photos/400/400?grayscale',
+    link: 'https://google.com/',
+    title: 'Item 2',
+    description: 'This is pretty cool, right?'
+  },
+  {
+    image: 'https://picsum.photos/500/500?grayscale',
+    link: 'https://google.com/',
+    title: 'Item 3',
+    description: 'This is pretty cool, right?'
+  },
+  {
+    image: 'https://picsum.photos/600/600?grayscale',
+    link: 'https://google.com/',
+    title: 'Item 4',
+    description: 'This is pretty cool, right?'
+  }
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <div className={styles.logo}>MENU.INC</div>
-          <div className={styles.menuIcon}>
-            <span></span>
-            <span></span>
-          </div>
-        </nav>
-      </header>
-
-      <main className={styles.main}>
-        <section className={styles.hero}>
-          <h1 className={`${styles.title} px-4 py-2`}>
-            Design <br /> <span className="text-rose-600">Refined.</span>
-          </h1>
-        </section>
-        
-        <section className={styles.infiniteSection}>
-          <InfiniteMenu />
-        </section>
-
-        <section className={styles.content}>
-          <p className={styles.description}>
-            Experience the flow of modern navigation. 
-            Scroll down to explore more or interact with the menu above.
-          </p>
-        </section>
-      </main>
-
-      <footer className={styles.footer}>
-        <p>© 2026 MENU STUDIO. ALL RIGHTS RESERVED.</p>
-      </footer>
-    </div>
+    <main className="w-full h-screen bg-black overflow-hidden">
+      <div style={{ height: '100%', width: '100%', position: 'relative' }}>
+        <InfiniteMenu items={items} scale={1} />
+      </div>
+    </main>
   );
 }
