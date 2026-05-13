@@ -968,15 +968,13 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
           {activeItem && (
             <motion.div
               key={activeItem.image}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, scale: 1.2, filter: 'blur(60px) brightness(0.5)' }}
+              animate={{ opacity: 0.6, scale: 1.1, filter: 'blur(40px) brightness(0.5)' }}
+              exit={{ opacity: 0, scale: 1.0, filter: 'blur(60px) brightness(0.5)' }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="absolute inset-0 bg-cover bg-center"
               style={{ 
                 backgroundImage: `url(${activeItem.image})`,
-                filter: 'blur(40px) brightness(0.5)',
-                transform: 'scale(1.1)' 
               }}
             />
           )}
