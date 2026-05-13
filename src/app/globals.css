@@ -1,9 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
 @import "tailwindcss";
-
-@theme {
-  --font-google: "Google Sans Flex", sans-serif;
-}
 
 :root {
   --background: #ffffff;
@@ -30,10 +25,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Clase específica solicitada */
+/* Clase específica solicitada (ahora usando Outfit para mayor compatibilidad) */
 .google-sans-flex-custom {
-  font-family: "Google Sans Flex", sans-serif !important;
+  font-family: var(--font-outfit), sans-serif !important;
   font-optical-sizing: auto;
   font-style: normal;
-  font-variation-settings: "slnt" 0, "wdth" 100, "GRAD" 0, "ROND" 0;
 }

@@ -1075,7 +1075,8 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
               google-sans-flex-custom
               select-none
               absolute
-              font-light
+              font-thin
+              tracking-tighter
               text-white
               [font-size:4rem]
               left-[1.6em]
@@ -1128,7 +1129,7 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
           >
             <div className="flex items-center gap-6">
               <span className="w-12 h-[1px] bg-white/50"></span>
-              <p className="google-sans-flex-custom text-white text-xl font-light italic tracking-wide select-none">
+              <p className="google-sans-flex-custom text-white text-xl font-thin italic tracking-wide select-none">
                 {activeItem.description}
               </p>
             </div>
