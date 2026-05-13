@@ -1,0 +1,58 @@
+.menuContainer {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 0;
+  display: flex;
+  position: relative;
+}
+
+.menuTrack {
+  display: flex;
+  white-space: nowrap;
+}
+
+.menuItem {
+  font-size: 5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 0 4rem;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.menuItem:hover {
+  color: #fff;
+  -webkit-text-stroke: 1px #fff;
+  transform: skewX(-10deg) scale(1.05);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.separator {
+  width: 12px;
+  height: 12px;
+  background: #ff0055;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: light) {
+  .menuItem {
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+  }
+  .menuItem:hover {
+    color: #000;
+    -webkit-text-stroke: 1px #000;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+  }
+}
