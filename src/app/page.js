@@ -4,52 +4,40 @@ import InfiniteMenu from '@/components/InfiniteMenu';
 
 const items = [
   {
-    image: '/abstract/chrome.jpg',
+    image: '/image-1 (1).jpg',
     link: '#',
-    title: 'Chrome Flow',
-    description: 'A liquid metal surface reflecting a digital world of pure reflection.'
+    title: 'Abstract Flow',
+    description: 'A mesmerizing abstract composition of light and color.'
   },
   {
-    image: '/abstract/neon.jpg',
+    image: '/image-1 (2).jpg',
     link: '#',
-    title: 'Neon Vortex',
-    description: 'Electric pulses of light dancing through a dark, high-contrast void.'
+    title: 'Digital Waves',
+    description: 'Fluid digital patterns captured in a single moment.'
   },
   {
-    image: '/abstract/wave.jpg',
+    image: '/image-1 (3).jpg',
     link: '#',
-    title: 'Crystal Wave',
-    description: 'The smooth, rhythmic motion of transparent glass in a sunset glow.'
+    title: 'Neon Dreams',
+    description: 'Vibrant neon hues blending into a cosmic vision.'
   },
   {
-    image: '/abstract/pearl.jpg',
+    image: '/image-1 (4).jpg',
     link: '#',
-    title: 'Pearl Essence',
-    description: 'Soft, iridescent gradients that shimmer with every movement.'
+    title: 'Prism Light',
+    description: 'Light refracted through an infinite spectrum of color.'
   },
   {
-    image: '/abstract/gold.jpg',
+    image: '/image-1 (5).jpg',
     link: '#',
-    title: 'Liquid Gold',
-    description: 'The ultimate symbol of luxury, flowing with warmth and elegance.'
+    title: 'Void Echo',
+    description: 'An ethereal echo emerging from the deep void.'
   },
   {
-    image: '/abstract/spectrum.jpg',
+    image: '/image-1 (1).webp',
     link: '#',
-    title: 'Spectrum Drift',
-    description: 'A full range of colors merging in a seamless, fluid transition.'
-  },
-  {
-    image: '/abstract/prism.jpg',
-    link: '#',
-    title: 'Prism Shape',
-    description: 'Geometric light refraction creating sharp, vibrant color spikes.'
-  },
-  {
-    image: '/abstract/iris.jpg',
-    link: '#',
-    title: 'Iris Burst',
-    description: 'A concentric explosion of color inspired by the beauty of the eye.'
+    title: 'Crystal Matrix',
+    description: 'Geometric precision meeting organic beauty.'
   }
 ];
 
