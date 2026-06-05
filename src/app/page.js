@@ -87,7 +87,7 @@ export default function Home() {
           onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.8')}
         >
-          ✨ Creado por Sebastian Vasquez
+          ✨ Created by Sebastian Vasquez
         </a>
         <a
           href="https://github.com/sebastianvasquezechavarria1234/infinite-menu"
@@ -106,7 +106,7 @@ export default function Home() {
           onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.8')}
         >
-          💻 Ver codigo fuente
+          💻 View source code
         </a>
       </div>
     </main>
