@@ -993,7 +993,6 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
   const [randomBg, setRandomBg] = useState(null);
 
   useEffect(() => {
-    // Elegir una imagen aleatoria del array de items al montar
     if (items && items.length > 0) {
       const random = items[Math.floor(Math.random() * items.length)];
       setRandomBg(random.image);
@@ -1013,7 +1012,10 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
 
   return (
     <div className="relative w-full h-full bg-black overflow-hidden">
-      {/* Random Background (Always visible as default) */}
+      {/* Solid Black Base */}
+      <div className="absolute inset-0 bg-black" style={{ zIndex: -1 }} />
+
+      {/* Random Background (Default) */}
       {randomBg && (
         <motion.div
           animate={{ x: -mousePos.x * 0.6, y: -mousePos.y * 0.6 }}
@@ -1026,10 +1028,7 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
         />
       )}
 
-      {/* Solid Black Base (behind everything) */}
-      <div className="absolute inset-0 bg-black" style={{ zIndex: -1 }} />
-
-      {/* Dynamic Active Planet Background (Visible when NOT moving) */}
+      {/* Active Card Background (Transition when card selected) */}
       <AnimatePresence>
         {!isMoving && activeItem && (
           <motion.div
@@ -1038,18 +1037,18 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
             animate={{ opacity: 0.7, scale: 1.05 }}
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0 z-0 bg-cover bg-center"
+            className="absolute inset-0 z-[2] bg-cover bg-center"
             style={{ 
               backgroundImage: `url(${activeItem.image})`,
-              filter: 'blur(20px) brightness(0.6)' // Un poco de blur para mantener profundidad
+              filter: 'blur(20px) brightness(0.6)'
             }}
           />
         )}
       </AnimatePresence>
-      
+
       {/* Cinematic Vignette Overlay */}
       <div 
-        className="absolute inset-0 z-0 pointer-events-none" 
+        className="absolute inset-0 z-[3] pointer-events-none" 
         style={{
           background: 'radial-gradient(circle, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.9) 100%)'
         }}

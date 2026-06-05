@@ -4,37 +4,37 @@ import InfiniteMenu from '@/components/InfiniteMenu';
 
 const items = [
   {
-    image: '/image-1 (1).jpg',
+    image: '/image-1.jpg',
     link: '#',
     title: 'Abstract Flow',
     description: 'A mesmerizing abstract composition of light and color.'
   },
   {
-    image: '/image-1 (2).jpg',
+    image: '/image-2.jpg',
     link: '#',
     title: 'Digital Waves',
     description: 'Fluid digital patterns captured in a single moment.'
   },
   {
-    image: '/image-1 (3).jpg',
+    image: '/image-3.jpg',
     link: '#',
     title: 'Neon Dreams',
     description: 'Vibrant neon hues blending into a cosmic vision.'
   },
   {
-    image: '/image-1 (4).jpg',
+    image: '/image-4.jpg',
     link: '#',
     title: 'Prism Light',
     description: 'Light refracted through an infinite spectrum of color.'
   },
   {
-    image: '/image-1 (5).jpg',
+    image: '/image-5.jpg',
     link: '#',
     title: 'Void Echo',
     description: 'An ethereal echo emerging from the deep void.'
   },
   {
-    image: '/image-1 (1).webp',
+    image: '/image-6.webp',
     link: '#',
     title: 'Crystal Matrix',
     description: 'Geometric precision meeting organic beauty.'
