@@ -2,7 +2,7 @@
 
 A **premium, WebGL-powered interactive menu** built with Next.js, featuring deep-space exploration aesthetics, cinematic animations, and multi-layer parallax effects.
 
-![Infinite Menu Preview](./public/preview.png)
+![Infinite Menu Preview](./public/preview.jpg)
 
 ---
 
